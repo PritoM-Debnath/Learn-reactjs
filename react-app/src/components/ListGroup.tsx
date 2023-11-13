@@ -1,14 +1,28 @@
 function ListGroup() {
+  const items = ["New York", "Los Angeles", "Chicago", "Houston"];
+
+
+  const getMessage = () => {
+    return items.length === 0 && <p>No items</p>;
+  };
+
   return (
-    <ul className="list-group">
-      <li className="list-group-item active" aria-current="true">
-        An active item
-      </li>
-      <li className="list-group-item">A second item</li>
-      <li className="list-group-item">A third item</li>
-      <li className="list-group-item">A fourth item</li>
-      <li className="list-group-item">And a fifth one</li>
-    </ul>
+    // this is fragment syntax, which allows us to return multiple elements
+    <>
+      <h1>List Group</h1>
+      {getMessage()}
+      <ul className="list-group">
+        {items.map((item) => (
+          <li
+            className="list-group-item"
+            key={item}
+            onClick={(event) => console.log(event)}
+          >
+            {item}
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }
 
