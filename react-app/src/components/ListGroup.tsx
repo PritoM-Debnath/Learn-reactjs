@@ -1,3 +1,5 @@
+import {MouseEvent} from "react";
+
 function ListGroup() {
   const items = ["New York", "Los Angeles", "Chicago", "Houston"];
 
@@ -5,7 +7,9 @@ function ListGroup() {
   const getMessage = () => {
     return items.length === 0 && <p>No items</p>;
   };
-
+  
+  //event handler
+  const handleClick = (event : MouseEvent) => console.log(event);
   return (
     // this is fragment syntax, which allows us to return multiple elements
     <>
@@ -16,7 +20,7 @@ function ListGroup() {
           <li
             className="list-group-item"
             key={item}
-            onClick={(event) => console.log(event)}
+            onClick={handleClick}
           >
             {item}
           </li>
