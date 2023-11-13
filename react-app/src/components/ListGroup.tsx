@@ -1,21 +1,20 @@
-import {useState} from "react";
+import { useState } from "react";
 
 interface Props {
   items: string[];
   heading: string;
+  onSelectItem: (item: string) => void;
 }
-function ListGroup({items, heading}:Props) {
+function ListGroup({ items, heading, onSelectItem }: Props) {
   //Hook
   const [selectedIndex, setSelectedIndex] = useState(-1);
   //arr[0] // variable (selectedIndex)
   //arr[1] // updater function (setSelectedIndex)
 
-
   const getMessage = () => {
     return items.length === 0 && <p>No items</p>;
   };
 
-  
   return (
     // this is fragment syntax, which allows us to return multiple elements
     <>
@@ -24,9 +23,16 @@ function ListGroup({items, heading}:Props) {
       <ul className="list-group">
         {items.map((item, index) => (
           <li
-            className={selectedIndex === index ? "list-group-item active" : "list-group-item"}
+            className={
+              selectedIndex === index
+                ? "list-group-item active"
+                : "list-group-item"
+            }
             key={item}
-            onClick={()=> setSelectedIndex(index)}
+            onClick={() => {
+              setSelectedIndex(index);
+              onSelectItem(item);
+            }}
           >
             {item}
           </li>
