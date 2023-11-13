@@ -1,8 +1,10 @@
 import {useState} from "react";
 
-function ListGroup() {
-  const items = ["New York", "Los Angeles", "Chicago", "Houston"];
-
+interface Props {
+  items: string[];
+  heading: string;
+}
+function ListGroup({items, heading}:Props) {
   //Hook
   const [selectedIndex, setSelectedIndex] = useState(-1);
   //arr[0] // variable (selectedIndex)
@@ -17,7 +19,7 @@ function ListGroup() {
   return (
     // this is fragment syntax, which allows us to return multiple elements
     <>
-      <h1>List Group</h1>
+      <h1>{heading}</h1>
       {getMessage()}
       <ul className="list-group">
         {items.map((item, index) => (
